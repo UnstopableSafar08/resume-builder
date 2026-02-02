@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProResume Builder | Create Your Professional Resume</title>
+    <meta name="description"
+        content="Build a professional, modern resume in minutes with our real-time resume builder.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Form Section -->
+        <aside class="editor-section">
+            <header class="editor-header">
+                <div class="logo">
+                    <span class="logo-icon">📄</span>
+                    <h1>ProResume</h1>
+                </div>
+                <p>Craft your professional story</p>
+            </header>
+
+            <div class="form-tabs">
+                <button class="tab-btn active" data-tab="personal">Personal</button>
+                <button class="tab-btn" data-tab="experience">Work</button>
+                <button class="tab-btn" data-tab="skills">Skills</button>
+                <button class="tab-btn" data-tab="projects">Projects</button>
+                <button class="tab-btn" data-tab="education">Education</button>
+                <button class="tab-btn" data-tab="certs">Certifications</button>
+                <button class="tab-btn" data-tab="references">References</button>
+                <button class="tab-btn" data-tab="more">More</button>
+            </div>
+
+            <form id="resume-form" class="editor-form">
+                <!-- Personal Info -->
+                <section id="tab-personal" class="tab-content active">
+                    <h3>Personal Information</h3>
+                    <div class="input-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="e.g. Sagar Malla" value="Sagar Malla">
+                    </div>
+                    <div class="input-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" placeholder="e.g. DevOps Engineer" value="DevOps Engineer">
+                    </div>
+                    <div class="input-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" placeholder="e.g. Imadol-02, Lalitpur, Nepal"
+                            value="Imadol-02, Bijepokhari, Lalitpur, Nepal">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" placeholder="e.g. 9848313081" value="9848313081">
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="e.g. name@example.com"
+                                value="sagarmalla08@gmail.com">
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="linkedin">LinkedIn URL</label>
+                            <input type="text" id="linkedin" placeholder="linkedin.com/in/username">
+                        </div>
+                        <div class="input-group">
+                            <label for="github">GitHub/Portfolio</label>
+                            <input type="text" id="github" placeholder="github.com/username">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="website">Personal Website / Portfolio</label>
+                        <input type="text" id="website" placeholder="www.yourportfolio.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="profileSummary">Professional Summary</label>
+                        <textarea id="profileSummary" rows="5"
+                            placeholder="2–4 sentence summary of experience, skills, and achievements..."></textarea>
+                    </div>
+                </section>
+
+                <!-- Experience -->
+                <section id="tab-experience" class="tab-content">
+                    <div class="section-header">
+                        <h3>Employment History</h3>
+                        <button type="button" class="add-btn" onclick="addExperience()">+ Add</button>
+                    </div>
+                    <div id="experience-list" class="dynamic-list">
+                        <!-- Experience items will be added here -->
+                    </div>
+                </section>
+
+                <!-- Skills -->
+                <section id="tab-skills" class="tab-content">
+                    <div class="section-header">
+                        <h3>Skills & Expertise</h3>
+                        <button type="button" class="add-btn" onclick="addSkill()">+ Add</button>
+                    </div>
+                    <div id="skills-list" class="dynamic-list">
+                        <!-- Skills will be added here -->
+                    </div>
+                </section>
+
+                <!-- Projects -->
+                <section id="tab-projects" class="tab-content">
+                    <div class="section-header">
+                        <h3>Key Projects</h3>
+                        <button type="button" class="add-btn" onclick="addProject()">+ Add</button>
+                    </div>
+                    <div id="projects-list" class="dynamic-list">
+                        <!-- Projects will be added here -->
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section id="tab-education" class="tab-content">
+                    <div class="section-header">
+                        <h3>Education</h3>
+                        <button type="button" class="add-btn" onclick="addEducation()">+ Add</button>
+                    </div>
+                    <div id="education-list" class="dynamic-list">
+                        <!-- Education items will be added here -->
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section id="tab-certs" class="tab-content">
+                    <div class="section-header">
+                        <h3>Certifications & Training</h3>
+                        <button type="button" class="add-btn" onclick="addCourse()">+ Add</button>
+                    </div>
+                    <div id="courses-list" class="dynamic-list"></div>
+                </section>
+
+                <!-- References -->
+                <section id="tab-references" class="tab-content">
+                    <div class="section-header">
+                        <h3>Professional References</h3>
+                        <button type="button" class="add-btn" onclick="addReference()">+ Add</button>
+                    </div>
+                    <div id="references-list" class="dynamic-list"></div>
+                </section>
+
+                <!-- More (Achievements, Languages, Hobbies, Volunteer) -->
+                <section id="tab-more" class="tab-content">
+                    <div class="section-header">
+                        <h3>Achievements & Awards</h3>
+                        <button type="button" class="add-btn" onclick="addAchievement()">+ Add</button>
+                    </div>
+                    <div id="achievements-list" class="dynamic-list"></div>
+
+                    <div class="section-header" style="margin-top: 2rem;">
+                        <h3>Volunteer Work</h3>
+                        <button type="button" class="add-btn" onclick="addVolunteer()">+ Add</button>
+                    </div>
+                    <div id="volunteer-list" class="dynamic-list"></div>
+
+                    <div class="input-group" style="margin-top: 2rem;">
+                        <label for="languages">Languages (e.g. English, Nepali)</label>
+                        <input type="text" id="languages" placeholder="e.g. English (Fluent), Nepali (Native)">
+                    </div>
+
+                    <div class="input-group" style="margin-top: 1.5rem;">
+                        <label for="hobbies">Hobbies</label>
+                        <input type="text" id="hobbies" placeholder="e.g. Automation and Blogging."
+                            value="Automation and Blogging.">
+                    </div>
+                </section>
+            </form>
+
+            <div class="actions">
+                <button id="download-btn" class="primary-btn">Download PDF</button>
+                <button id="download-docx-btn" class="secondary-btn"
+                    style="flex: 1.5; background: #2b5797; color: white; border-color: #2b5797;">Download DOCX</button>
+                <button id="reset-btn" class="secondary-btn">Reset</button>
+            </div>
+        </aside>
+
+        <!-- Preview Section -->
+        <main class="preview-section">
+            <div id="resume-preview" class="resume-paper">
+                <!-- Resume content rendered here -->
+                <header class="resume-header">
+                    <h1 id="preview-name">Sagar Malla</h1>
+                    <h2 id="preview-title">DevOps Engineer</h2>
+                    <div class="contact-info">
+                        <span id="preview-address"></span> |
+                        <span id="preview-phone"></span> |
+                        <span id="preview-email"></span>
+                    </div>
+                    <div class="social-links" id="preview-socials">
+                        <!-- Social links rendered here -->
+                    </div>
+                </header>
+
+                <section class="resume-section">
+                    <div class="section-label">PROFILE</div>
+                    <div class="section-content">
+                        <p id="preview-profile">System and DevOps Engineer with 4+ years of hands-on IT experience,
+                            specializing in on-premises infrastructure operations, Linux system administration, network
+                            services, monitoring, incident management, security hardening, backup and disaster recovery,
+                            and 24/7 production support. Proven ability to maintain high-availability systems,
+                            troubleshoot complex infrastructure issues, and operate mission-critical environments using
+                            standard operating procedures and operational playbooks.</p>
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">EMPLOYMENT HISTORY</div>
+                    <div class="section-content" id="preview-experience">
+                        <!-- Experience will be rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">SKILLS</div>
+                    <div class="section-content">
+                        <div id="preview-skills" class="skills-grid">
+                            <!-- Skills rendered here -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">PROJECTS</div>
+                    <div class="section-content" id="preview-projects">
+                        <!-- Projects rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section" id="section-achievements">
+                    <div class="section-label">ACHIEVEMENTS</div>
+                    <div class="section-content" id="preview-achievements">
+                        <!-- Achievements rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">EDUCATION</div>
+                    <div class="section-content" id="preview-education">
+                        <!-- Education will be rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">COURSES & CERTS</div>
+                    <div class="section-content" id="preview-courses">
+                        <!-- Courses will be rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section" id="section-volunteer">
+                    <div class="section-label">VOLUNTEER</div>
+                    <div class="section-content" id="preview-volunteer">
+                        <!-- Volunteer work rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section" id="section-references">
+                    <div class="section-label">REFERENCES</div>
+                    <div class="section-content" id="preview-references">
+                        <!-- References will be rendered here -->
+                    </div>
+                </section>
+
+                <section class="resume-section" id="section-languages">
+                    <div class="section-label" id="lang-label">LANGUAGES</div>
+                    <div class="section-content">
+                        <p id="preview-languages"></p>
+                    </div>
+                </section>
+
+                <section class="resume-section">
+                    <div class="section-label">HOBBIES</div>
+                    <div class="section-content">
+                        <p id="preview-hobbies">Automation and Blogging.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
