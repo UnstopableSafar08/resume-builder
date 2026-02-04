@@ -428,9 +428,9 @@ function updatePreview() {
 // Initial Data Injection
 function loadInitialData() {
     document.getElementById('profileSummary').value = "System and DevOps Engineer with 4+ years of hands-on IT experience. Specialized in infrastructure automation, cloud migrations, and maintaining high-availability systems. Proven track record in reducing operational overhead and improving system reliability.";
-    document.getElementById('linkedin').value = "linkedin.com/in/sagarmalla";
-    document.getElementById('github').value = "github.com/sagarmalla";
-    document.getElementById('website').value = "www.sagarmalla.com";
+    document.getElementById('linkedin').value = "https://www.linkedin.com/in/sagarmalla08";
+    document.getElementById('github').value = "https://github.com/UnstopableSafar08";
+    document.getElementById('website').value = "www.sagarmalla.info.np";
     document.getElementById('languages').value = "English (Fluent), Nepali (Native), Hindi (Conversational)";
 
     addExperience({
@@ -447,7 +447,7 @@ function loadInitialData() {
         desc: 'Supported hybrid infrastructure with strong focus on on-prem production environments\nMaintained 24/7 availability through proactive monitoring and on-call incident response\nAutomated operational and deployment tasks using Ansible and Bash scripting\nAssisted with CI/CD pipeline execution and deployment verification using Jenkins'
     });
 
-    addSkill({ cat: 'Technical Skills', vals: 'Linux, Docker, Ansible, Jenkins, Git, Terraform, AWS, Python' });
+    addSkill({ cat: 'Technical Skills', vals: 'Linux, Docker, Ansible, Jenkins, Git, AWS, Python' });
     addSkill({ cat: 'Soft Skills', vals: 'Communication, Teamwork, Leadership, Problem Solving' });
     addSkill({ cat: 'Monitoring', vals: 'Prometheus, Grafana, ELK Stack' });
 
@@ -473,7 +473,7 @@ function loadInitialData() {
     });
 
     addEducation({
-        date: '2016 — 2021',
+        date: '2015 — 2020',
         location: 'Kathmandu',
         title: 'Bachelor of Information and Technology, College of Information Technology and Engineering'
     });
@@ -529,7 +529,7 @@ function downloadDocx() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'Sagar_Malla_Resume.doc';
+    link.download = 'Resume.doc';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -540,7 +540,7 @@ document.getElementById('download-btn').addEventListener('click', () => {
     const element = document.getElementById('resume-preview');
     const opt = {
         margin: [10, 0],
-        filename: 'Sagar_Malla_Resume.pdf',
+        filename: 'Resume.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 3, useCORS: true, logging: false },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
